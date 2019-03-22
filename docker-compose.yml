@@ -1,0 +1,32 @@
+version: '3.2'
+
+services:
+  nginx:
+    image: jwilder/nginx-proxy
+    volumes:
+      - /home/17high/certs:/etc/nginx/certs
+      - /var/run/docker.sock:/tmp/docker.sock
+    ports:
+      - "80:80"
+      - "443:443"
+
+  letsencrypt-www:
+    image: gocd/gocd-server:v19.2.0
+    build: .
+    env_file:
+      - ./configs/www.env
+    volumns:
+      -v /path/to/your/script.sh:/docker-entrypoint.d/your-script.sh
+    environment:
+      - VIRTUAL_HOST=cicd.sunwei.com
+      - GOCD_PLUGIN_INSTALL_docker-elastic-agents=https://github.com/gocd-contrib/docker-elastic-agents/releases/download/v0.8.0/docker-elastic-agents-0.8.0.jar
+      - FQDN
+    depends_on:
+      - "nginx"
+
+
+docker run \
+  -e GOCD_PLUGIN_INSTALL_docker-elastic-agents=https://github.com/gocd-contrib/docker-elastic-agents/releases/download/v0.8.0/docker-elastic-agents-0.8.0.jar \
+  gocd/gocd-server:v19.2.0
+
+  -v /path/to/your/script.sh:/docker-entrypoint.d/your-script.sh
