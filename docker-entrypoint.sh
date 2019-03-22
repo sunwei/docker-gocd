@@ -20,3 +20,10 @@ fi
       }
     ]
   }')
+
+
+# TODO
+1. generate gocd password file
+2. run gocd with docker and set password succeed
+3. sign domain
+4. run with docker compose
