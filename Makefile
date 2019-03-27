@@ -6,9 +6,8 @@ unlock:
 update-submodule:
 	git submodule update --init --recursive
 
-tests: update-submodule
-	export LETS_ENCRYPT_WWW_LIB_PATH=$(CURDIR)/lib && \
-	./test/libs/bats/bin/bats ./test/*.sh
+gen-pwd:
+	./scripts/1.gen-pwd.sh
 
 build:
 	docker-compose build letsencrypt-www
