@@ -2,7 +2,7 @@
 set -e
 BASEDIR="$(dirname "$0")"
 
-SECRETS_DIR=secrets
+SECRETS_DIR="$(cd ${BASEDIR}/secrets | pwd )"
 echo "Checking for encrypted repo content"
 if ( file $SECRETS_DIR/* | cut -d: -f2 | grep text &>/dev/null ); then
   echo "Encrypted files detected, unlocking ..."
