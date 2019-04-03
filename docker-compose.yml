@@ -1,14 +1,14 @@
 version: '3.2'
 
 services:
-#  nginx:
-#    image: jwilder/nginx-proxy
-#    volumes:
-#      - ./gocd-certs:/etc/nginx/certs
-#      - /var/run/docker.sock:/tmp/docker.sock
-#    ports:
-#      - "80:80"
-#      - "443:443"
+  nginx:
+    image: jwilder/nginx-proxy
+    volumes:
+      - ./cert:/etc/nginx/certs
+      - /var/run/docker.sock:/tmp/docker.sock
+    ports:
+      - "80:80"
+      - "443:443"
 
   gocd:
     image: gocd/gocd-server:v19.2.0
@@ -17,7 +17,7 @@ services:
       - ./scripts/2.pre-conf.sh:/pre-conf.sh
       - ./secrets/password.properties:/etc/go-users
     environment:
-      - VIRTUAL_HOST=cicd.sunwei.com
+      - VIRTUAL_HOST=cicd.sunzhongmou.com
       - GOCD_PLUGIN_INSTALL_docker-elastic-agents=https://github.com/gocd-contrib/docker-elastic-agents/releases/download/v0.8.0/docker-elastic-agents-0.8.0.jar
     ports:
       - "8153:8153"

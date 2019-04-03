@@ -11,8 +11,7 @@ DOMAIN=
 _unlock_repo(){
   make export-key keyid=me@sunwei.xyz
   docker run --rm -it \
-   --env GPGKEY=me@sunwei.xyz.asc \
-   -v "${GITCRYPT}:/app/key" \
+   -v "${GITCRYPT}/me@sunwei.xyz.asc:/app/key/gpg-private.asc" \
    -v "${PROJDIR}:/app/repo" \
    git-crypt \
   sh -c "cd ./lib/letsencrypt && make unlock"

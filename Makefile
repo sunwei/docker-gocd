@@ -1,4 +1,5 @@
 fqdn ?= cicd.sunzhongmou.com
+host ?= ihakula.com
 
 unlock:
 	./unlock.sh
@@ -8,6 +9,9 @@ gen-pwd:
 
 issue:
 	./scripts/4.issue.sh $(fqdn)
+
+upload:
+	./scripts/5.deploy.sh $(host)
 
 up:
 	docker-compose up -d
