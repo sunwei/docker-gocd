@@ -4,7 +4,7 @@ services:
 #  nginx:
 #    image: jwilder/nginx-proxy
 #    volumes:
-#      - ./certs:/etc/nginx/certs
+#      - ./gocd-certs:/etc/nginx/certs
 #      - /var/run/docker.sock:/tmp/docker.sock
 #    ports:
 #      - "80:80"
