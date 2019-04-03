@@ -1,3 +1,6 @@
 [submodule "lib/letsencrypt"]
 	path = lib/letsencrypt
 	url = git@github.com:sunwei/letsencrypt-www.git
+[submodule "lib/git-crypt"]
+	path = lib/git-crypt
+	url = git@github.com:sunwei/git-crypt.git
