@@ -1,5 +1,6 @@
 fqdn ?= cicd.sunzhongmou.com
 host ?= ihakula.com
+gpg ?= /me@sunwei.xyz.asc
 
 unlock:
 	./unlock.sh
@@ -8,7 +9,7 @@ gen-pwd:
 	./scripts/1.gen-pwd.sh
 
 issue:
-	./scripts/4.issue.sh $(fqdn)
+	./scripts/4.issue.sh $(fqdn) $(gpg)
 
 upload:
 	./scripts/5.deploy.sh $(host)

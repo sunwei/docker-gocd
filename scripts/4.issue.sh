@@ -5,20 +5,18 @@ BASEDIR="$(dirname "$0")"
 PROJDIR="$(cd ${BASEDIR}/../ && pwd)"
 CERTDIR="$(cd ${BASEDIR}/../cert && pwd)"
 WWW="$(cd ${BASEDIR}/../lib/letsencrypt && pwd)"
-GITCRYPT="$(cd ${BASEDIR}/../lib/git-crypt && pwd)"
 DOMAIN=
 
 _unlock_repo(){
-  make export-key keyid=me@sunwei.xyz
   docker run --rm -it \
-   -v "${GITCRYPT}/me@sunwei.xyz.asc:/app/key/gpg-private.asc" \
+   -v "${1}:/app/key/gpg-private.asc" \
    -v "${PROJDIR}:/app/repo" \
    git-crypt \
   sh -c "cd ./lib/letsencrypt && make unlock"
 }
 
 _issue_domain(){
-  ./www -p create "${DOMAIN}"
+  ./www create -p "${DOMAIN}"
 }
 
 _transfer_cert(){
@@ -28,12 +26,11 @@ _transfer_cert(){
 
 main(){
   DOMAIN="${1}"
+  GPGKEY="${2}"
 
-  cd ${BASEDIR}/../lib/git-crypt && pwd
-  _unlock_repo
-  cd ..
+  _unlock_repo "${GPGKEY}"
 
-  cd ./letsencrypt
+  cd ${BASEDIR}/../lib/letsencrypt && pwd
   _issue_domain
 
   _transfer_cert
