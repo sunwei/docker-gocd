@@ -20,4 +20,4 @@ services:
       - VIRTUAL_HOST=cicd.sunzhongmou.com
       - GOCD_PLUGIN_INSTALL_docker-elastic-agents=https://github.com/gocd-contrib/docker-elastic-agents/releases/download/v0.8.0/docker-elastic-agents-0.8.0.jar
     ports:
-      - "8153:8153"
+      - "8013:8153"
