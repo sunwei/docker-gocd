@@ -11,7 +11,7 @@ _unlock_repo(){
   docker run --rm -it \
    -v "${1}:/app/key/gpg-private.asc" \
    -v "${PROJDIR}:/app/repo" \
-   git-crypt \
+   sunzhongmou/git-crypt \
   sh -c "cd ./lib/letsencrypt && make unlock"
 }
 
