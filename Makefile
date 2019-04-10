@@ -11,9 +11,6 @@ gen-pwd:
 issue:
 	./scripts/4.issue.sh $(fqdn) $(gpg)
 
-upload:
-	./scripts/5.deploy.sh $(host)
-
 up:
 	docker-compose up -d
 
