@@ -1,5 +1,4 @@
 fqdn ?= cicd.sunzhongmou.com
-host ?= ihakula.com
 gpg ?= /me@sunwei.xyz.asc
 
 unlock:
